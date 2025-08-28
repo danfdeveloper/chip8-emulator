@@ -1,0 +1,8 @@
+*.exe
+*.dll
+*.obj
+*.o
+*.log
+/SDL2
+/roms
+/.vscode
