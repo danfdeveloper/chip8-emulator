@@ -1,9 +1,11 @@
-<<<<<<< HEAD
 *.exe
 *.dll
 *.obj
 *.o
+*.out
 *.log
-/SDL2
-/roms
-/.vscode
+SDL2/
+roms/
+.vscode/*
+chip8_emulator
+.vscode/settings.json

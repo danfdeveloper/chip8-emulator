@@ -1,22 +1,19 @@
-# Compiler and flags
-CXX := g++
-CXXFLAGS := -I./SDL2/include      # use if code has #include <SDL2/SDL.h>
-#CXXFLAGS := -I./SDL2/include/SDL2 # use if code has #include <SDL.h>
+CXX = g++
+CXXFLAGS = -std=c++11 -I SDL2/include/SDL2
+LDFLAGS = -lSDL2
 
-LDFLAGS := -L./SDL2/lib -lmingw32 -lSDL2main -lSDL2
+SRC = src/main.cpp src/chip8.cpp
+OBJ = $(SRC:.cpp=.o)
 
-# Targets
-SRC := src/m.cpp
-OUT := m.exe
-DLL := SDL2.dll
+TARGET = chip8_emulator
 
-all: $(OUT) copy-dll
+all: $(TARGET)
 
-$(OUT): $(SRC)
-	$(CXX) $(SRC) $(CXXFLAGS) $(LDFLAGS) -o $(OUT)
+$(TARGET): $(OBJ)
+	$(CXX) $(OBJ) -o $@ $(LDFLAGS)
 
-copy-dll:
-	cp ./SDL2/lib/$(DLL) .
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	-rm /f /q $(OUT) $(DLL) 2>nul
+	rm -f $(OBJ) $(TARGET)
