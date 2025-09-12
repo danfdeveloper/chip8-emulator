@@ -1,4 +1,4 @@
-
+#pragma once
 #include <cstdint>
 
 const unsigned int MEMORY_SIZE = 4096;
@@ -11,6 +11,7 @@ public:
 	void loadROM(char const *filename);
 	void emulateCycle();
 	void initialize();
+	void decodeOpcode(uint16_t opcode);
 	Chip8()
 	{
 		pc = 0x200; // Program counter starts at 0x200
